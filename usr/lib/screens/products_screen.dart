@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:couldai_user_app/models/product_category.dart';
+import 'package:couldai_user_app/screens/product_list_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -37,7 +38,12 @@ class ProductsScreen extends StatelessWidget {
           return Card(
             child: InkWell(
               onTap: () {
-                // Navigate to category product list screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductListScreen(category: category),
+                  ),
+                );
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

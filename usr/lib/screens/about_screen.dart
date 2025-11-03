@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
-  // Future<void> _launchUrl(String url) async {
-  //   final Uri uri = Uri.parse(url);
-  //   if (!await launchUrl(uri)) {
-  //     throw Exception('Could not launch $url');
-  //   }
-  // }
+  Future<void> _launchUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +36,25 @@ class AboutScreen extends StatelessWidget {
             icon: Icons.location_on,
             title: 'Location',
             subtitle: 'Jaipur, Rajasthan, India',
-            onTap: () {},
+            onTap: () => _launchUrl('https://maps.google.com/?q=Jaipur,Rajasthan,India'),
           ),
           _buildContactTile(
             icon: Icons.phone,
             title: 'WhatsApp',
             subtitle: '+91 12345 67890',
-            onTap: () => _showNotImplemented(context, 'WhatsApp'),
+            onTap: () => _launchUrl('https://wa.me/911234567890'),
           ),
           _buildContactTile(
             icon: Icons.email,
             title: 'Email',
             subtitle: 'contact@srsm-lubricants.com',
-            onTap: () {},
+            onTap: () => _launchUrl('mailto:contact@srsm-lubricants.com'),
           ),
           _buildContactTile(
             icon: Icons.camera_alt, // Placeholder for Instagram
             title: 'Instagram',
             subtitle: '@srsm_lubricants',
-            onTap: () => _showNotImplemented(context, 'Instagram'),
+            onTap: () => _launchUrl('https://www.instagram.com/srsm_lubricants'),
           ),
           const Divider(),
           _buildSectionHeader(context, 'Forms & Support'),
